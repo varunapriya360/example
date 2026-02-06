@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: example-deployment
+  name: finance-tracker-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: example-app
+      app: finance-tracker
   template:
     metadata:
       labels:
-        app: example-app
+        app: finance-tracker
     spec:
       containers:
-      - name: example
-        image: example-app:latest
+      - name: finance-tracker
+        image: finance-tracker-web:1.0
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 80
+        - containerPort: 5000

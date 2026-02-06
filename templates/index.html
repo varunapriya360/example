@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Finance Tracker</title>
+</head>
+<body>
+<h2>Add Income / Expense</h2>
+
+<form method="post">
+    Category: <input name="category" required>
+    Amount: <input name="amount" type="number" required>
+    Type:
+    <select name="type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+    </select>
+    <button type="submit">Add</button>
+</form>
+
+<h3>Records</h3>
+<ul>
+{% for e in expenses %}
+    <li>{{ e[1] }} - {{ e[2] }} ({{ e[3] }})</li>
+{% endfor %}
+</ul>
+
+<a href="/chart">View Expense Chart</a>
+</body>
+</html>
