@@ -13,8 +13,13 @@ spec:
         app: finance-tracker
     spec:
       containers:
-      - name: finance-tracker
-        image: finance-tracker-web:1.0
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 5000
+        - name: finance-tracker
+          image: finance-tracker-web:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: finance-config
+
+

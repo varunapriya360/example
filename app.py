@@ -8,7 +8,9 @@ import os
 
 app = Flask(__name__)
 
-DB = "expenses.db"
+#DB = "expenses.db"
+DB = os.getenv("DB_NAME", "expenses.db")
+APP_PORT = int(os.getenv("APP_PORT", 5000))
 
 def init_db():
     with sqlite3.connect(DB) as conn:
