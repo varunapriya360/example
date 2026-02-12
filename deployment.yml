@@ -16,11 +16,18 @@ spec:
         - name: finance-tracker
           image: finance-tracker-web:1.0
           imagePullPolicy: IfNotPresent
+
           ports:
             - containerPort: 5000
+
           envFrom:
             - configMapRef:
                 name: finance-config
+
+          # Mount PVC to persist chart images
+          volumeMounts:
+            - name: chart-storage
+              mountPath: /app/static
 
           readinessProbe:
             httpGet:
@@ -42,3 +49,9 @@ spec:
               port: 5000
             failureThreshold: 30
             periodSeconds: 5
+
+      # PVC definition
+      volumes:
+        - name: chart-storage
+          persistentVolumeClaim:
+            claimName: chart-pvc
