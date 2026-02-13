@@ -11,6 +11,9 @@ spec:
     targetRevision: "*"
     helm:
       values: |
+        prometheus:
+          prometheusSpec:
+            serviceMonitorSelectorNilUsesHelmValues: false
         grafana:
           enabled: true
   destination:
