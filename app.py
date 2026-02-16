@@ -1,11 +1,12 @@
+import os
+import time
+import sqlite3
+
 import matplotlib
 matplotlib.use("Agg")
 
-from flask import Flask, render_template, request, redirect, Response
-import sqlite3
 import matplotlib.pyplot as plt
-import os
-import time
+from flask import Flask, render_template, request, redirect, Response
 
 from prometheus_client import (
     Counter,
