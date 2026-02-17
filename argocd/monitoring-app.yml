@@ -5,21 +5,33 @@ metadata:
   namespace: argocd
 spec:
   project: default
+
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
     chart: kube-prometheus-stack
-    targetRevision: "*"
+    targetRevision: "55.6.0"
     helm:
       values: |
         prometheus:
           prometheusSpec:
             serviceMonitorSelectorNilUsesHelmValues: false
+
         grafana:
           enabled: true
+          service:
+            type: ClusterIP
+
+        alertmanager:
+          enabled: false
+
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
+
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - SkipDryRunOnMissingResource=true

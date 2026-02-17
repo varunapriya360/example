@@ -159,3 +159,12 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+grafana:
+  service:
+    type: ClusterIP
+
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+
