@@ -13,19 +13,26 @@ spec:
     chart: kube-prometheus-stack
     targetRevision: "55.6.0"
     helm:
-      skipCrds: false
       values: |
         prometheus:
           prometheusSpec:
             serviceMonitorSelectorNilUsesHelmValues: false
+            podMonitorSelectorNilUsesHelmValues: false
 
         grafana:
           enabled: true
+          adminPassword: admin
           service:
             type: ClusterIP
 
         alertmanager:
           enabled: false
+
+        kubeStateMetrics:
+          enabled: true
+
+        nodeExporter:
+          enabled: true
 
   destination:
     server: https://kubernetes.default.svc
@@ -38,4 +45,3 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - SkipDryRunOnMissingResource=true
-      - Replace=true
