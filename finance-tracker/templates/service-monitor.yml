@@ -8,8 +8,11 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: finance-tracker
+  namespaceSelector:
+    matchNames:
+      - default       # your finance-tracker is in the default namespace
   endpoints:
-    - port: http
+    - port: "http"    # must be string, matches the service port name
       path: /metrics
       interval: 30s
       scrapeTimeout: 10s
