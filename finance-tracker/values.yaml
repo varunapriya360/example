@@ -26,6 +26,9 @@ service:
 ingress:
   enabled: false
 
+httpRoute:
+  enabled: false
+
 livenessProbe:
   httpGet:
     path: /

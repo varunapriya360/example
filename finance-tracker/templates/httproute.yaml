@@ -1,4 +1,5 @@
-{{- if .Values.httpRoute.enabled -}}
+#{{- if .Values.httpRoute.enabled -}}
+{{- if and .Values.httpRoute ( .Values.httpRoute.enabled ) }}
 {{- $fullName := include "finance-tracker.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
 apiVersion: gateway.networking.k8s.io/v1
