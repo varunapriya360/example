@@ -1,8 +1,11 @@
 nodeExporter:
   enabled: false
 
-grafana:
+kubeStateMetrics:
   enabled: true
 
 prometheus:
+  enabled: true
+
+grafana:
   enabled: true
