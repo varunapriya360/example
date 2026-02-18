@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 3
 
 image:
   repository: varunapriya/finance-tracker-web
@@ -28,6 +28,9 @@ service:
     app: finance-tracker
 
 ingress:
+  enabled: false
+
+httpRoute:
   enabled: false
 
 resources: {}
