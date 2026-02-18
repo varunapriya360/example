@@ -33,9 +33,6 @@ ingress:
 httpRoute:
   enabled: false
 
-nodeExporter:
-  enabled: false
-
 resources: {}
 
 livenessProbe:
