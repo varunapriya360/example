@@ -1,19 +1,23 @@
+{{- if .Values.serviceMonitor.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: finance-tracker
-  namespace: monitoring          # must be where Prometheus operator is watching
+  namespace: monitoring
   labels:
     release: monitoring
 spec:
+  namespaceSelector:
+    matchNames:
+      - default
   selector:
     matchLabels:
       app.kubernetes.io/name: finance-tracker
-  namespaceSelector:
-    matchNames:
-      - default                 # finance-tracker is in default namespace
+      app.kubernetes.io/instance: finance-tracker
   endpoints:
-    - port: "http"              # must match the Service port name as string
+    - port: "http"
       path: /metrics
       interval: 30s
       scrapeTimeout: 10s
+{{- end }}
+

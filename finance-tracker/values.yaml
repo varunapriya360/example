@@ -20,6 +20,7 @@ resources:
 service:
   type: ClusterIP
   port: 5000
+  portName: http
   labels:
     app: finance-tracker
 
@@ -46,10 +47,4 @@ autoscaling:
 # Prometheus integration
 # -----------------------------
 serviceMonitor:
-  enabled: true
-  namespace: monitoring
-  interval: 30s
-  scrapeTimeout: 10s
-  path: /metrics
-  labels:
-    release: monitoring
+  enabled: false

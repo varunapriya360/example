@@ -1,5 +1,5 @@
 ﻿# -------------------------------
-# Finance Tracker + Monitoring Setup
+# Finance Tracker + Monitoring Setup (FIXED)
 # -------------------------------
 
 Write-Host "Checking namespaces..."
@@ -22,15 +22,13 @@ Start-Process powershell -ArgumentList {
     kubectl port-forward svc/argocd-server -n argocd 8443:443
 }
 Write-Host "Open Argo CD at: https://localhost:8443"
-Write-Host "Get Argo CD admin password with:"
-Write-Host 'kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode'
 
 # -------------------------------
-# 3️⃣ Prometheus
+# 3️⃣ Prometheus (FIXED ✅)
 # -------------------------------
-Write-Host "Port-forwarding Prometheus..."
+Write-Host "Port-forwarding Prometheus POD (not service)..."
 Start-Process powershell -ArgumentList {
-    kubectl port-forward svc/monitoring-kube-prometheus-prometheus -n monitoring 9090:9090
+    kubectl port-forward -n monitoring prometheus-monitoring-kube-prometheus-prometheus-0 9090:9090
 }
 Write-Host "Open Prometheus at: http://localhost:9090"
 
@@ -42,8 +40,8 @@ Start-Process powershell -ArgumentList {
     kubectl port-forward svc/monitoring-grafana -n monitoring 3000:80
 }
 Write-Host "Open Grafana at: http://localhost:3000"
-Write-Host "Add Prometheus data source URL:"
-Write-Host "http://monitoring-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090"
 
-# -------------------------------
-Write-Host "`All port-forwards started! Open the URLs above in your browser."
+Write-Host "Grafana Prometheus datasource URL:"
+Write-Host "http://localhost:9090"
+
+Write-Host "`nAll port-forwards started!"
