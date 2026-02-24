@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: finance-tracker
-          image: finance-tracker-web:1.0
+          image: finance-tracker-web:1.1
           imagePullPolicy: IfNotPresent
 
           ports:
